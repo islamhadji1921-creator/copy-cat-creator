@@ -1,5 +1,7 @@
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import ScrollReveal from "@/components/ScrollReveal";
 import weightLossLifestyle from "@/assets/weight-loss-lifestyle.jpg";
 import antiAging from "@/assets/anti-aging.jpg";
 import hairGrowth from "@/assets/hair-growth.jpg";
@@ -52,12 +54,34 @@ const products = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+};
+
 const ProductsSection = () => {
   return (
     <section className="py-16 lg:py-24">
       <div className="container">
         {/* Section Header */}
-        <div className="mb-12 text-center">
+        <ScrollReveal className="mb-12 text-center">
           <span className="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-primary">
             Our Meds
           </span>
@@ -66,49 +90,54 @@ const ProductsSection = () => {
             <br />
             <span className="text-muted-foreground">Without The Insurance</span>
           </h2>
-        </div>
+        </ScrollReveal>
 
         {/* Products Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {products.map((product, index) => (
-            <Card
-              key={index}
-              className="group overflow-hidden border-border bg-card transition-all duration-300 hover:shadow-lg"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <CardContent className="p-5">
-                <h3 className="mb-1 text-lg font-semibold text-foreground">
-                  {product.title}
-                </h3>
-                <p className="mb-3 text-sm text-muted-foreground">
-                  {product.description}
-                </p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-2xl font-bold text-foreground">
-                      {product.price}
-                    </span>
-                    <span className="text-sm text-muted-foreground">
-                      {product.period}
-                    </span>
-                  </div>
-                  <Button
-                    size="sm"
-                    className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
-                  >
-                    Get Started
-                  </Button>
+            <motion.div key={index} variants={itemVariants}>
+              <Card className="group overflow-hidden border-border bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
                 </div>
-              </CardContent>
-            </Card>
+                <CardContent className="p-5">
+                  <h3 className="mb-1 text-lg font-semibold text-foreground">
+                    {product.title}
+                  </h3>
+                  <p className="mb-3 text-sm text-muted-foreground">
+                    {product.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-2xl font-bold text-foreground">
+                        {product.price}
+                      </span>
+                      <span className="text-sm text-muted-foreground">
+                        {product.period}
+                      </span>
+                    </div>
+                    <Button
+                      size="sm"
+                      className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-transform hover:scale-105"
+                    >
+                      Get Started
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
