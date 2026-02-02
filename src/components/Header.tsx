@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -26,17 +27,46 @@ const moreLinks = [
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+    <motion.header
+      initial={false}
+      animate={{
+        height: scrolled ? 56 : 64,
+        boxShadow: scrolled
+          ? "0 4px 20px -2px rgba(0, 0, 0, 0.1)"
+          : "0 0 0 0 rgba(0, 0, 0, 0)",
+      }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
+        scrolled
+          ? "border-border bg-background/98 backdrop-blur-md"
+          : "border-transparent bg-transparent"
+      }`}
+    >
+      <div className="container flex h-full items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
+        <motion.a
+          href="#"
+          className="flex items-center gap-2"
+          animate={{ scale: scrolled ? 0.95 : 1 }}
+          transition={{ duration: 0.3 }}
+        >
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary">
             <span className="text-lg font-bold text-primary-foreground">H</span>
           </div>
           <span className="text-xl font-bold text-foreground">HealthRx</span>
-        </a>
+        </motion.a>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex lg:items-center lg:gap-1">
@@ -81,9 +111,14 @@ const Header = () => {
           <Button variant="ghost" className="text-sm font-medium">
             Login
           </Button>
-          <Button className="rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground hover:bg-primary/90">
-            Get Started
-          </Button>
+          <motion.div
+            animate={{ scale: scrolled ? 0.95 : 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Button className="rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground hover:bg-primary/90">
+              Get Started
+            </Button>
+          </motion.div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -102,7 +137,12 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="border-t border-border bg-background lg:hidden">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          className="border-t border-border bg-background lg:hidden"
+        >
           <nav className="container flex flex-col gap-1 py-4">
             {navLinks.map((link) => (
               <a
@@ -122,9 +162,9 @@ const Header = () => {
               </Button>
             </div>
           </nav>
-        </div>
+        </motion.div>
       )}
-    </header>
+    </motion.header>
   );
 };
 
