@@ -1,5 +1,7 @@
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const footerLinks = {
   products: [
@@ -34,24 +36,36 @@ const Footer = () => {
       {/* CTA Section */}
       <div className="border-b border-background/10 py-16 lg:py-20">
         <div className="container text-center">
-          <h2 className="mb-4 text-3xl font-bold lg:text-4xl">
-            Ready to start your wellness journey?
-          </h2>
-          <p className="mx-auto mb-8 max-w-xl text-background/70">
-            Join thousands of people who have transformed their health with our
-            personalized treatment plans.
-          </p>
-          <Button className="rounded-full bg-primary px-8 py-6 text-lg font-medium text-primary-foreground hover:bg-primary/90">
-            Get Started Today
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <ScrollReveal>
+            <h2 className="mb-4 text-3xl font-bold lg:text-4xl">
+              Ready to start your wellness journey?
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <p className="mx-auto mb-8 max-w-xl text-background/70">
+              Join thousands of people who have transformed their health with our
+              personalized treatment plans.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={0.2}>
+            <Button className="rounded-full bg-primary px-8 py-6 text-lg font-medium text-primary-foreground hover:bg-primary/90 transition-transform hover:scale-105">
+              Get Started Today
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </ScrollReveal>
         </div>
       </div>
 
       {/* Links Section */}
       <div className="py-12 lg:py-16">
         <div className="container">
-          <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="grid gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5"
+          >
             {/* Logo & Description */}
             <div className="sm:col-span-2 lg:col-span-1">
               <a href="#" className="mb-4 flex items-center gap-2">
@@ -75,7 +89,7 @@ const Footer = () => {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-background/60 hover:text-background"
+                      className="text-sm text-background/60 hover:text-background transition-colors"
                     >
                       {link.label}
                     </a>
@@ -92,7 +106,7 @@ const Footer = () => {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-background/60 hover:text-background"
+                      className="text-sm text-background/60 hover:text-background transition-colors"
                     >
                       {link.label}
                     </a>
@@ -109,7 +123,7 @@ const Footer = () => {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-background/60 hover:text-background"
+                      className="text-sm text-background/60 hover:text-background transition-colors"
                     >
                       {link.label}
                     </a>
@@ -126,7 +140,7 @@ const Footer = () => {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-background/60 hover:text-background"
+                      className="text-sm text-background/60 hover:text-background transition-colors"
                     >
                       {link.label}
                     </a>
@@ -134,7 +148,7 @@ const Footer = () => {
                 ))}
               </ul>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
