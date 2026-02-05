@@ -63,9 +63,9 @@ const Header = () => {
           transition={{ duration: 0.3 }}
         >
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary">
-            <span className="text-lg font-bold text-primary-foreground">H</span>
+            <span className="text-lg font-bold text-primary-foreground">R</span>
           </div>
-          <span className="text-xl font-bold text-foreground">HealthRx</span>
+          <span className="text-xl font-bold text-foreground">Ronaq El Hayat</span>
         </motion.a>
 
         {/* Desktop Navigation */}
