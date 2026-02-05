@@ -71,10 +71,10 @@ const Footer = () => {
               <a href="#" className="mb-4 flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary">
                   <span className="text-lg font-bold text-primary-foreground">
-                    H
+                    R
                   </span>
                 </div>
-                <span className="text-xl font-bold">HealthRx</span>
+                <span className="text-xl font-bold">Ronaq El Hayat</span>
               </a>
               <p className="text-sm text-background/60">
                 Personalized healthcare solutions delivered to your door.
@@ -156,7 +156,7 @@ const Footer = () => {
       <div className="border-t border-background/10 py-6">
         <div className="container flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
           <p className="text-sm text-background/60">
-            © 2024 HealthRx. All rights reserved.
+            © 2024 Ronaq El Hayat. All rights reserved.
           </p>
           <p className="text-xs text-background/40">
             These statements have not been evaluated by the FDA. This product is
