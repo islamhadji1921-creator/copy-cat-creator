@@ -1,20 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, Check, Truck, DollarSign, ArrowRight } from "lucide-react";
+import { Star, Check, Truck, DollarSign, ArrowRight, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
+import { useLanguage } from "@/contexts/LanguageContext";
 import heroProduct from "@/assets/hero-product.jpg";
 import weightLossLifestyle from "@/assets/weight-loss-lifestyle.jpg";
 import antiAging from "@/assets/anti-aging.jpg";
 import hairGrowth from "@/assets/hair-growth.jpg";
 import strength from "@/assets/strength.jpg";
 import mood from "@/assets/mood.jpg";
-
-const benefits = [
-  { icon: Check, text: "Same ingredient as Wegovy® & Ozempic®" },
-  { icon: DollarSign, text: "No hidden fees" },
-  { icon: Truck, text: "Free shipping" },
-];
 
 const galleryImages = [
   { src: heroProduct, alt: "Weight loss medication pen" },
@@ -28,6 +23,15 @@ const galleryImages = [
 const HeroSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [smallImages, setSmallImages] = useState([1, 2]);
+  const { t, isRTL } = useLanguage();
+
+  const benefits = [
+    { icon: Check, text: t.hero.benefit1 },
+    { icon: DollarSign, text: t.hero.benefit2 },
+    { icon: Truck, text: t.hero.benefit3 },
+  ];
+
+  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -59,16 +63,16 @@ const HeroSection = () => {
                     />
                   ))}
                 </div>
-                <span className="text-sm font-medium text-foreground">4.5</span>
-                <span className="text-sm text-muted-foreground">(453 reviews)</span>
+                <span className="text-sm font-medium text-foreground">{t.hero.rating}</span>
+                <span className="text-sm text-muted-foreground">{t.hero.reviews}</span>
               </div>
             </ScrollReveal>
 
             {/* Headline */}
             <ScrollReveal delay={0.1}>
               <h1 className="text-4xl font-bold leading-tight tracking-tight text-foreground lg:text-5xl xl:text-6xl">
-                Compounded Semaglutide for{" "}
-                <span className="text-primary">Weight Loss</span>
+                {t.hero.headline}{" "}
+                <span className="text-primary">{t.hero.headlineHighlight}</span>
               </h1>
             </ScrollReveal>
 
@@ -78,7 +82,7 @@ const HeroSection = () => {
                 {benefits.map((benefit, index) => (
                   <motion.li
                     key={index}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 + index * 0.1 }}
                     className="flex items-center gap-3"
@@ -96,12 +100,12 @@ const HeroSection = () => {
             <ScrollReveal delay={0.4}>
               <div className="flex flex-col gap-4">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-foreground">$296</span>
-                  <span className="text-lg text-muted-foreground">/mo</span>
+                  <span className="text-4xl font-bold text-foreground">{t.hero.price}</span>
+                  <span className="text-lg text-muted-foreground">{t.hero.perMonth}</span>
                 </div>
                 <Button className="w-fit rounded-full bg-primary px-8 py-6 text-lg font-medium text-primary-foreground hover:bg-primary/90 transition-transform hover:scale-105">
-                  Get Started
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  {t.nav.getStarted}
+                  <ArrowIcon className="ms-2 h-5 w-5" />
                 </Button>
               </div>
             </ScrollReveal>
@@ -111,17 +115,17 @@ const HeroSection = () => {
               <div className="mt-2 rounded-xl border border-border bg-background p-4 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-semibold text-foreground">Is This Right for You?</p>
+                    <p className="font-semibold text-foreground">{t.hero.eligibilityTitle}</p>
                     <p className="text-sm text-muted-foreground">
-                      Take a quick assessment to find out
+                      {t.hero.eligibilityDesc}
                     </p>
                   </div>
                   <a
                     href="#"
                     className="flex items-center gap-1 text-sm font-medium text-primary hover:underline"
                   >
-                    Find Out
-                    <ArrowRight className="h-4 w-4" />
+                    {t.hero.findOut}
+                    <ArrowIcon className="h-4 w-4" />
                   </a>
                 </div>
               </div>

@@ -1,38 +1,12 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import ScrollReveal from "@/components/ScrollReveal";
+import { useLanguage } from "@/contexts/LanguageContext";
 import weightLossLifestyle from "@/assets/weight-loss-lifestyle.jpg";
 import healthyAging from "@/assets/healthy-aging.jpg";
 import hairGrowth from "@/assets/hair-growth.jpg";
 import womensHormones from "@/assets/womens-hormones.jpg";
-
-const resources = [
-  {
-    title: "Weight Loss",
-    description:
-      "Discover science-backed strategies for sustainable weight management and metabolic health.",
-    image: weightLossLifestyle,
-  },
-  {
-    title: "Healthy Aging",
-    description:
-      "Learn about treatments that can help you age gracefully and maintain vitality.",
-    image: healthyAging,
-  },
-  {
-    title: "Hair Growth",
-    description:
-      "Explore effective solutions for hair restoration and maintaining healthy hair.",
-    image: hairGrowth,
-  },
-  {
-    title: "Women's Hormones",
-    description:
-      "Understanding hormonal health and treatments tailored for women's unique needs.",
-    image: womensHormones,
-  },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -57,15 +31,41 @@ const itemVariants = {
 };
 
 const ResourcesSection = () => {
+  const { t, isRTL } = useLanguage();
+  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+
+  const resources = [
+    {
+      title: t.resources.weightLoss,
+      description: t.resources.weightLossDesc,
+      image: weightLossLifestyle,
+    },
+    {
+      title: t.resources.healthyAging,
+      description: t.resources.healthyAgingDesc,
+      image: healthyAging,
+    },
+    {
+      title: t.resources.hairGrowth,
+      description: t.resources.hairGrowthDesc,
+      image: hairGrowth,
+    },
+    {
+      title: t.resources.womensHormones,
+      description: t.resources.womensHormonesDesc,
+      image: womensHormones,
+    },
+  ];
+
   return (
     <section className="py-16 lg:py-24">
       <div className="container">
         {/* Section Header */}
         <ScrollReveal className="mb-12 text-center">
           <h2 className="text-3xl font-bold text-foreground lg:text-4xl">
-            Your guide to health and wellness
+            {t.resources.title}
             <br />
-            <span className="text-muted-foreground">starts here</span>
+            <span className="text-muted-foreground">{t.resources.subtitle}</span>
           </h2>
         </ScrollReveal>
 
@@ -100,8 +100,8 @@ const ResourcesSection = () => {
                     href="#"
                     className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline group/link"
                   >
-                    Learn more
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
+                    {t.promo.learnMore}
+                    <ArrowIcon className="h-4 w-4 transition-transform group-hover/link:translate-x-1 rtl:group-hover/link:-translate-x-1" />
                   </a>
                 </CardContent>
               </Card>

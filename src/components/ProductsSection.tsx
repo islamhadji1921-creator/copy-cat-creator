@@ -2,57 +2,13 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import ScrollReveal from "@/components/ScrollReveal";
+import { useLanguage } from "@/contexts/LanguageContext";
 import weightLossLifestyle from "@/assets/weight-loss-lifestyle.jpg";
 import antiAging from "@/assets/anti-aging.jpg";
 import hairGrowth from "@/assets/hair-growth.jpg";
 import strength from "@/assets/strength.jpg";
 import mood from "@/assets/mood.jpg";
 import nadSupplement from "@/assets/nad-supplement.jpg";
-
-const products = [
-  {
-    title: "Weight Loss Program",
-    price: "$149",
-    period: "/mo",
-    image: weightLossLifestyle,
-    description: "Clinically proven weight management",
-  },
-  {
-    title: "Anti-Aging Cleanser",
-    price: "$49",
-    period: "/mo",
-    image: antiAging,
-    description: "Rejuvenate your skin naturally",
-  },
-  {
-    title: "Hair Growth Serum",
-    price: "$89",
-    period: "/mo",
-    image: hairGrowth,
-    description: "Promote healthy hair growth",
-  },
-  {
-    title: "Strength Supplement",
-    price: "$79",
-    period: "/mo",
-    image: strength,
-    description: "Build lean muscle mass",
-  },
-  {
-    title: "Mood Enhancer",
-    price: "$59",
-    period: "/mo",
-    image: mood,
-    description: "Support mental wellness",
-  },
-  {
-    title: "NAD+ Supplement",
-    price: "$129",
-    period: "/mo",
-    image: nadSupplement,
-    description: "Cellular energy & longevity",
-  },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -77,18 +33,65 @@ const itemVariants = {
 };
 
 const ProductsSection = () => {
+  const { t } = useLanguage();
+
+  const products = [
+    {
+      title: t.products.weightLossProgram,
+      price: "19,500 دج",
+      period: t.common.perMonth,
+      image: weightLossLifestyle,
+      description: t.products.weightLossDesc,
+    },
+    {
+      title: t.products.antiAgingCleanser,
+      price: "6,400 دج",
+      period: t.common.perMonth,
+      image: antiAging,
+      description: t.products.antiAgingDesc,
+    },
+    {
+      title: t.products.hairGrowthSerum,
+      price: "11,700 دج",
+      period: t.common.perMonth,
+      image: hairGrowth,
+      description: t.products.hairGrowthDesc,
+    },
+    {
+      title: t.products.strengthSupplement,
+      price: "10,400 دج",
+      period: t.common.perMonth,
+      image: strength,
+      description: t.products.strengthDesc,
+    },
+    {
+      title: t.products.moodEnhancer,
+      price: "7,800 دج",
+      period: t.common.perMonth,
+      image: mood,
+      description: t.products.moodDesc,
+    },
+    {
+      title: t.products.nadSupplement,
+      price: "16,900 دج",
+      period: t.common.perMonth,
+      image: nadSupplement,
+      description: t.products.nadDesc,
+    },
+  ];
+
   return (
     <section className="py-16 lg:py-24">
       <div className="container">
         {/* Section Header */}
         <ScrollReveal className="mb-12 text-center">
           <span className="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-primary">
-            Our Meds
+            {t.products.sectionLabel}
           </span>
           <h2 className="text-3xl font-bold text-foreground lg:text-4xl">
-            Medication Made Affordable
+            {t.products.sectionTitle}
             <br />
-            <span className="text-muted-foreground">Without The Insurance</span>
+            <span className="text-muted-foreground">{t.products.sectionSubtitle}</span>
           </h2>
         </ScrollReveal>
 
@@ -130,7 +133,7 @@ const ProductsSection = () => {
                       size="sm"
                       className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-transform hover:scale-105"
                     >
-                      Get Started
+                      {t.nav.getStarted}
                     </Button>
                   </div>
                 </CardContent>

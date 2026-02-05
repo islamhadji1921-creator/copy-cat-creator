@@ -10,24 +10,27 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-
-const navLinks = [
-  { label: "Weight Loss", href: "#" },
-  { label: "Strength", href: "#" },
-  { label: "Anti-Aging", href: "#" },
-  { label: "Hair Growth", href: "#" },
-  { label: "Mood", href: "#" },
-];
-
-const moreLinks = [
-  { label: "NAD+", href: "#" },
-  { label: "Women's Health", href: "#" },
-  { label: "Men's Health", href: "#" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageToggle from "@/components/LanguageToggle";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { t, isRTL } = useLanguage();
+
+  const navLinks = [
+    { label: t.nav.weightLoss, href: "#" },
+    { label: t.nav.strength, href: "#" },
+    { label: t.nav.antiAging, href: "#" },
+    { label: t.nav.hairGrowth, href: "#" },
+    { label: t.nav.mood, href: "#" },
+  ];
+
+  const moreLinks = [
+    { label: t.nav.nad, href: "#" },
+    { label: t.nav.womensHealth, href: "#" },
+    { label: t.nav.mensHealth, href: "#" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,7 +68,7 @@ const Header = () => {
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary">
             <span className="text-lg font-bold text-primary-foreground">R</span>
           </div>
-          <span className="text-xl font-bold text-foreground">Ronaq El Hayat</span>
+          <span className="text-xl font-bold text-foreground">رونق الحياة</span>
         </motion.a>
 
         {/* Desktop Navigation */}
@@ -83,7 +86,7 @@ const Header = () => {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent text-sm font-medium text-muted-foreground hover:text-foreground">
-                  More
+                  {t.nav.more}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-48 gap-1 p-2">
@@ -108,31 +111,34 @@ const Header = () => {
 
         {/* Desktop CTA Buttons */}
         <div className="hidden items-center gap-3 lg:flex">
+          <LanguageToggle />
           <Button variant="ghost" className="text-sm font-medium">
-            Login
+            {t.nav.login}
           </Button>
           <motion.div
             animate={{ scale: scrolled ? 0.95 : 1 }}
             transition={{ duration: 0.3 }}
           >
             <Button className="rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground hover:bg-primary/90">
-              Get Started
+              {t.nav.getStarted}
             </Button>
           </motion.div>
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
+        <div className="flex items-center gap-3 lg:hidden">
+          <LanguageToggle />
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -155,10 +161,10 @@ const Header = () => {
             ))}
             <div className="mt-2 flex flex-col gap-2 px-4">
               <Button variant="outline" className="w-full">
-                Login
+                {t.nav.login}
               </Button>
               <Button className="w-full rounded-full bg-primary text-primary-foreground">
-                Get Started
+                {t.nav.getStarted}
               </Button>
             </div>
           </nav>
