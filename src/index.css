@@ -109,3 +109,31 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* RTL Support */
+[dir="rtl"] {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* RTL arrow animations */
+[dir="rtl"] .group-hover\/link\:translate-x-1:hover {
+  --tw-translate-x: -0.25rem;
+}
+
+/* RTL margin utilities */
+[dir="rtl"] .ms-2 {
+  margin-inline-start: 0.5rem;
+}
+
+[dir="ltr"] .ms-2 {
+  margin-left: 0.5rem;
+}
+
+/* RTL text alignment */
+[dir="rtl"] .text-start {
+  text-align: right;
+}
+
+[dir="ltr"] .text-start {
+  text-align: left;
+}

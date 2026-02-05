@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, forwardRef } from "react";
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -15,29 +15,29 @@ const directionVariants = {
   right: { x: -40, y: 0 },
 };
 
-const ScrollReveal = ({
-  children,
-  className = "",
-  delay = 0,
-  direction = "up",
-}: ScrollRevealProps) => {
-  const initialOffset = directionVariants[direction];
+const ScrollReveal = forwardRef<HTMLDivElement, ScrollRevealProps>(
+  ({ children, className = "", delay = 0, direction = "up" }, ref) => {
+    const initialOffset = directionVariants[direction];
 
-  return (
-    <motion.div
-      initial={{ opacity: 0, ...initialOffset }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{
-        duration: 0.6,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-};
+    return (
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, ...initialOffset }}
+        whileInView={{ opacity: 1, x: 0, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{
+          duration: 0.6,
+          delay,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className={className}
+      >
+        {children}
+      </motion.div>
+    );
+  }
+);
+
+ScrollReveal.displayName = "ScrollReveal";
 
 export default ScrollReveal;

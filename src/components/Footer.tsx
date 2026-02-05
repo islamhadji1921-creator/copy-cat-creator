@@ -1,36 +1,39 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
-
-const footerLinks = {
-  products: [
-    { label: "Weight Loss", href: "#" },
-    { label: "Anti-Aging", href: "#" },
-    { label: "Hair Growth", href: "#" },
-    { label: "Strength", href: "#" },
-    { label: "Mood", href: "#" },
-  ],
-  company: [
-    { label: "About Us", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Press", href: "#" },
-    { label: "Blog", href: "#" },
-  ],
-  support: [
-    { label: "Help Center", href: "#" },
-    { label: "Contact Us", href: "#" },
-    { label: "FAQ", href: "#" },
-    { label: "Shipping", href: "#" },
-  ],
-  legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "HIPAA Notice", href: "#" },
-  ],
-};
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t, isRTL } = useLanguage();
+  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+
+  const footerLinks = {
+    products: [
+      { label: t.nav.weightLoss, href: "#" },
+      { label: t.nav.antiAging, href: "#" },
+      { label: t.nav.hairGrowth, href: "#" },
+      { label: t.nav.strength, href: "#" },
+      { label: t.nav.mood, href: "#" },
+    ],
+    company: [
+      { label: t.footer.aboutUs, href: "#" },
+      { label: t.footer.careers, href: "#" },
+      { label: t.footer.press, href: "#" },
+      { label: t.footer.blog, href: "#" },
+    ],
+    support: [
+      { label: t.footer.helpCenter, href: "#" },
+      { label: t.footer.contactUs, href: "#" },
+      { label: t.faq.title, href: "#" },
+      { label: t.footer.shipping, href: "#" },
+    ],
+    legal: [
+      { label: t.footer.privacyPolicy, href: "#" },
+      { label: t.footer.termsOfService, href: "#" },
+    ],
+  };
+
   return (
     <footer className="bg-foreground text-background">
       {/* CTA Section */}
@@ -38,19 +41,18 @@ const Footer = () => {
         <div className="container text-center">
           <ScrollReveal>
             <h2 className="mb-4 text-3xl font-bold lg:text-4xl">
-              Ready to start your wellness journey?
+              {t.footer.ctaTitle}
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <p className="mx-auto mb-8 max-w-xl text-background/70">
-              Join thousands of people who have transformed their health with our
-              personalized treatment plans.
+              {t.footer.ctaDesc}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
             <Button className="rounded-full bg-primary px-8 py-6 text-lg font-medium text-primary-foreground hover:bg-primary/90 transition-transform hover:scale-105">
-              Get Started Today
-              <ArrowRight className="ml-2 h-5 w-5" />
+              {t.footer.ctaButton}
+              <ArrowIcon className="ms-2 h-5 w-5" />
             </Button>
           </ScrollReveal>
         </div>
@@ -74,16 +76,16 @@ const Footer = () => {
                     R
                   </span>
                 </div>
-                <span className="text-xl font-bold">Ronaq El Hayat</span>
+                <span className="text-xl font-bold">رونق الحياة</span>
               </a>
               <p className="text-sm text-background/60">
-                Personalized healthcare solutions delivered to your door.
+                {t.footer.tagline}
               </p>
             </div>
 
             {/* Products */}
             <div>
-              <h4 className="mb-4 font-semibold">Products</h4>
+              <h4 className="mb-4 font-semibold">{t.footer.productsTitle}</h4>
               <ul className="flex flex-col gap-2">
                 {footerLinks.products.map((link) => (
                   <li key={link.label}>
@@ -100,7 +102,7 @@ const Footer = () => {
 
             {/* Company */}
             <div>
-              <h4 className="mb-4 font-semibold">Company</h4>
+              <h4 className="mb-4 font-semibold">{t.footer.companyTitle}</h4>
               <ul className="flex flex-col gap-2">
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
@@ -117,7 +119,7 @@ const Footer = () => {
 
             {/* Support */}
             <div>
-              <h4 className="mb-4 font-semibold">Support</h4>
+              <h4 className="mb-4 font-semibold">{t.footer.supportTitle}</h4>
               <ul className="flex flex-col gap-2">
                 {footerLinks.support.map((link) => (
                   <li key={link.label}>
@@ -134,7 +136,7 @@ const Footer = () => {
 
             {/* Legal */}
             <div>
-              <h4 className="mb-4 font-semibold">Legal</h4>
+              <h4 className="mb-4 font-semibold">{t.footer.legalTitle}</h4>
               <ul className="flex flex-col gap-2">
                 {footerLinks.legal.map((link) => (
                   <li key={link.label}>
@@ -154,13 +156,12 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-background/10 py-6">
-        <div className="container flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
+        <div className="container flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-start">
           <p className="text-sm text-background/60">
-            © 2024 Ronaq El Hayat. All rights reserved.
+            {t.footer.copyright}
           </p>
           <p className="text-xs text-background/40">
-            These statements have not been evaluated by the FDA. This product is
-            not intended to diagnose, treat, cure, or prevent any disease.
+            {t.footer.disclaimer}
           </p>
         </div>
       </div>

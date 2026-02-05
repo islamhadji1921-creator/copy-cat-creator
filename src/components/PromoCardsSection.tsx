@@ -1,35 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import antiAging from "@/assets/anti-aging.jpg";
 import healthyAging from "@/assets/healthy-aging.jpg";
 import nadSupplement from "@/assets/nad-supplement.jpg";
-
-const promoCards = [
-  {
-    title: "Age with confidence",
-    subtitle: "Anti-aging treatments",
-    price: "$119",
-    priceNote: "first month",
-    image: healthyAging,
-    gradient: "from-amber-500/80 to-orange-600/80",
-  },
-  {
-    title: "Rejuvenate your skin",
-    subtitle: "Premium skincare",
-    price: "$84",
-    priceNote: "/mo",
-    image: antiAging,
-    gradient: "from-rose-400/80 to-pink-600/80",
-  },
-  {
-    title: "Boost cellular energy",
-    subtitle: "NAD+ therapy",
-    price: "$99",
-    priceNote: "/mo",
-    image: nadSupplement,
-    gradient: "from-violet-500/80 to-purple-700/80",
-  },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -55,6 +29,36 @@ const cardVariants = {
 };
 
 const PromoCardsSection = () => {
+  const { t, isRTL } = useLanguage();
+  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+
+  const promoCards = [
+    {
+      title: t.promo.card1Title,
+      subtitle: t.promo.card1Subtitle,
+      price: "15,600 دج",
+      priceNote: t.promo.firstMonth,
+      image: healthyAging,
+      gradient: "from-amber-500/80 to-orange-600/80",
+    },
+    {
+      title: t.promo.card2Title,
+      subtitle: t.promo.card2Subtitle,
+      price: "11,000 دج",
+      priceNote: t.common.perMonth,
+      image: antiAging,
+      gradient: "from-rose-400/80 to-pink-600/80",
+    },
+    {
+      title: t.promo.card3Title,
+      subtitle: t.promo.card3Subtitle,
+      price: "13,000 دج",
+      priceNote: t.common.perMonth,
+      image: nadSupplement,
+      gradient: "from-violet-500/80 to-purple-700/80",
+    },
+  ];
+
   return (
     <section className="bg-muted py-16 lg:py-24">
       <div className="container">
@@ -107,8 +111,8 @@ const PromoCardsSection = () => {
                   href="#"
                   className="inline-flex items-center gap-2 text-sm font-medium text-white hover:underline group/link"
                 >
-                  Learn more
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
+                  {t.promo.learnMore}
+                  <ArrowIcon className="h-4 w-4 transition-transform group-hover/link:translate-x-1 rtl:group-hover/link:-translate-x-1" />
                 </a>
               </div>
             </motion.div>

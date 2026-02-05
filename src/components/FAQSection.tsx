@@ -6,36 +6,34 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import ScrollReveal from "@/components/ScrollReveal";
-
-const faqs = [
-  {
-    question: "What states do you serve GLP-1 programs?",
-    answer:
-      "We currently serve patients in 48 states. Restrictions may apply in certain states due to local regulations. Contact our support team to confirm availability in your area.",
-  },
-  {
-    question: "Do you take insurance?",
-    answer:
-      "We currently operate on a cash-pay model to keep our prices transparent and affordable. However, you may be able to use HSA or FSA funds for your treatments. We provide detailed receipts you can submit to your insurance for potential reimbursement.",
-  },
-  {
-    question: "What medications do your doctors prescribe?",
-    answer:
-      "Our licensed healthcare providers prescribe FDA-approved medications and compounded versions where appropriate. This includes Semaglutide, Tirzepatide, and other evidence-based treatments. All prescriptions are customized based on your individual health profile.",
-  },
-  {
-    question: 'What is our "Same Price at Every Dose" guarantee?',
-    answer:
-      "Unlike other programs that increase prices as your dosage increases, we keep your monthly cost the same regardless of your prescribed dose. This means you'll never pay more as your treatment progresses.",
-  },
-  {
-    question: "Do your plans include prescriptions and medications?",
-    answer:
-      "Yes! Your monthly subscription includes your consultation with a licensed provider, the prescription itself, and all medications shipped directly to your door. There are no hidden fees or additional costs.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const FAQSection = () => {
+  const { t, isRTL } = useLanguage();
+
+  const faqs = [
+    {
+      question: t.faq.q1,
+      answer: t.faq.a1,
+    },
+    {
+      question: t.faq.q2,
+      answer: t.faq.a2,
+    },
+    {
+      question: t.faq.q3,
+      answer: t.faq.a3,
+    },
+    {
+      question: t.faq.q4,
+      answer: t.faq.a4,
+    },
+    {
+      question: t.faq.q5,
+      answer: t.faq.a5,
+    },
+  ];
+
   return (
     <section className="bg-muted py-16 lg:py-24">
       <div className="container">
@@ -43,10 +41,10 @@ const FAQSection = () => {
           {/* Section Header */}
           <ScrollReveal className="mb-10 text-center">
             <h2 className="text-3xl font-bold text-foreground lg:text-4xl">
-              Frequently Asked Questions
+              {t.faq.title}
             </h2>
             <p className="mt-3 text-muted-foreground">
-              Everything you need to know about our programs
+              {t.faq.subtitle}
             </p>
           </ScrollReveal>
 
@@ -61,7 +59,7 @@ const FAQSection = () => {
               {faqs.map((faq, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 * index, duration: 0.4 }}
@@ -70,7 +68,7 @@ const FAQSection = () => {
                     value={`item-${index}`}
                     className="border-b border-border"
                   >
-                    <AccordionTrigger className="py-5 text-left text-base font-medium text-foreground hover:text-primary hover:no-underline transition-colors">
+                    <AccordionTrigger className="py-5 text-start text-base font-medium text-foreground hover:text-primary hover:no-underline transition-colors">
                       {faq.question}
                     </AccordionTrigger>
                     <AccordionContent className="pb-5 text-muted-foreground">
