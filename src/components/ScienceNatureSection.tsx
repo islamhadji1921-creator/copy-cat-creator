@@ -46,8 +46,8 @@ const ScienceNatureSection = () => {
           {/* Image */}
           <ScrollReveal direction={isRTL ? "right" : "left"} className="order-2 lg:order-1">
             <motion.img
-              src={scienceNature}
-              alt="Science and nature harmony"
+              src={pcShop}
+              alt="PC shop interior"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4 }}
               className="rounded-2xl shadow-lg"

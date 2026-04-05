@@ -20,8 +20,8 @@ const PersonalizedPlanSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <motion.img
-          src={gymFitness}
-          alt="Fitness background"
+          src={pcAssembly}
+          alt="PC assembly workshop"
           initial={{ scale: 1.1 }}
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}
