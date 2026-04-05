@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Leaf, FlaskConical, Sparkles, Ban, Droplets, Wheat } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/contexts/LanguageContext";
-import scienceNature from "@/assets/science-nature.jpg";
+import pcShop from "@/assets/pc-shop.jpg";
 
 const containerVariants = {
   hidden: { opacity: 0 },
