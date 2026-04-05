@@ -1,200 +1,133 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Star, Check, Truck, DollarSign, ArrowRight, ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import ScrollReveal from "@/components/ScrollReveal";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Play } from "lucide-react";
+import BlurText from "@/components/BlurText";
 import { useLanguage } from "@/contexts/LanguageContext";
-import heroProduct from "@/assets/hero-product.jpg";
-import weightLossLifestyle from "@/assets/weight-loss-lifestyle.jpg";
-import antiAging from "@/assets/anti-aging.jpg";
-import hairGrowth from "@/assets/hair-growth.jpg";
-import strength from "@/assets/strength.jpg";
-import mood from "@/assets/mood.jpg";
 
-const galleryImages = [
-  { src: heroProduct, alt: "Weight loss medication pen" },
-  { src: weightLossLifestyle, alt: "Weight loss lifestyle" },
-  { src: antiAging, alt: "Anti-aging skincare" },
-  { src: hairGrowth, alt: "Hair growth serum" },
-  { src: strength, alt: "Strength training" },
-  { src: mood, alt: "Mental wellness" },
-];
+const partners = ["Intel", "AMD", "NVIDIA", "MSI", "ASUS"];
 
 const HeroSection = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [smallImages, setSmallImages] = useState([1, 2]);
-  const { t, isRTL } = useLanguage();
-
-  const benefits = [
-    { icon: Check, text: t.hero.benefit1 },
-    { icon: DollarSign, text: t.hero.benefit2 },
-    { icon: Truck, text: t.hero.benefit3 },
-  ];
-
-  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
-      setSmallImages((prev) => {
-        const next1 = (prev[0] + 1) % galleryImages.length;
-        const next2 = (prev[1] + 1) % galleryImages.length;
-        return [next1, next2];
-      });
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
+  const { t } = useLanguage();
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-wellness-teal-light to-background py-12 lg:py-20">
-      <div className="container">
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
-          {/* Left Content */}
-          <div className="flex flex-col gap-6">
-            {/* Rating Badge */}
-            <ScrollReveal delay={0}>
-              <div className="inline-flex items-center gap-2 self-start rounded-full bg-background px-4 py-2 shadow-sm">
-                <div className="flex items-center">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`h-4 w-4 ${i < 4 ? "fill-secondary text-secondary" : i === 4 ? "fill-secondary/50 text-secondary" : "text-muted"}`}
-                    />
-                  ))}
-                </div>
-                <span className="text-sm font-medium text-foreground">{t.hero.rating}</span>
-                <span className="text-sm text-muted-foreground">{t.hero.reviews}</span>
-              </div>
-            </ScrollReveal>
+    <section className="relative h-screen w-full overflow-hidden bg-black">
+      {/* Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover object-right"
+      >
+        <source
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260330_145725_08886141-ed95-4a8e-8d6d-b75eaadce638.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div className="absolute inset-0 bg-black/5" />
 
-            {/* Headline */}
-            <ScrollReveal delay={0.1}>
-              <h1 className="text-4xl font-bold leading-tight tracking-tight text-foreground lg:text-5xl xl:text-6xl">
-                {t.hero.headline}{" "}
-                <span className="text-primary">{t.hero.headlineHighlight}</span>
-              </h1>
-            </ScrollReveal>
-
-            {/* Benefits List */}
-            <ScrollReveal delay={0.2}>
-              <ul className="flex flex-col gap-3">
-                {benefits.map((benefit, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
-                    className="flex items-center gap-3"
-                  >
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
-                      <benefit.icon className="h-4 w-4 text-primary" />
-                    </div>
-                    <span className="text-muted-foreground">{benefit.text}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </ScrollReveal>
-
-            {/* Pricing */}
-            <ScrollReveal delay={0.4}>
-              <div className="flex flex-col gap-4">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-foreground">{t.hero.price}</span>
-                  <span className="text-lg text-muted-foreground">{t.hero.perMonth}</span>
-                </div>
-                <Button className="w-fit rounded-full bg-primary px-8 py-6 text-lg font-medium text-primary-foreground hover:bg-primary/90 transition-transform hover:scale-105">
-                  {t.nav.getStarted}
-                  <ArrowIcon className="ms-2 h-5 w-5" />
-                </Button>
-              </div>
-            </ScrollReveal>
-
-            {/* Eligibility Card */}
-            <ScrollReveal delay={0.5}>
-              <div className="mt-2 rounded-xl border border-border bg-background p-4 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-semibold text-foreground">{t.hero.eligibilityTitle}</p>
-                    <p className="text-sm text-muted-foreground">
-                      {t.hero.eligibilityDesc}
-                    </p>
-                  </div>
-                  <a
-                    href="#"
-                    className="flex items-center gap-1 text-sm font-medium text-primary hover:underline"
-                  >
-                    {t.hero.findOut}
-                    <ArrowIcon className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-            </ScrollReveal>
+      {/* Content Layer */}
+      <div className="relative z-10 flex h-full flex-col">
+        {/* Navigation */}
+        <nav className="flex w-full max-w-7xl mx-auto flex-row items-center justify-between px-8 py-6">
+          <span className="font-instrument text-3xl tracking-tight text-white">
+            Itech Pro<sup className="text-xs">®</sup>
+          </span>
+          <div className="hidden items-center gap-8 md:flex">
+            {[
+              { label: t.hero.navHome, active: true },
+              { label: t.hero.navProducts },
+              { label: t.hero.navAbout },
+              { label: t.hero.navContact },
+            ].map((link, i) => (
+              <a
+                key={i}
+                href="#"
+                className={`font-barlow text-sm transition-colors ${
+                  link.active ? "text-white" : "text-white/60 hover:text-white"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
+          <button className="liquid-glass rounded-full px-6 py-2.5 font-barlow text-sm text-white transition-transform hover:scale-[1.03]">
+            {t.hero.cta}
+          </button>
+        </nav>
 
-          {/* Right Content - Animated Image Gallery */}
-          <div className="grid grid-cols-2 gap-4">
-            {/* Main Large Image */}
-            <div className="col-span-2 relative h-64 lg:h-80 overflow-hidden rounded-2xl shadow-lg">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={currentImageIndex}
-                  src={galleryImages[currentImageIndex].src}
-                  alt={galleryImages[currentImageIndex].alt}
-                  initial={{ opacity: 0, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.7, ease: "easeInOut" }}
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </AnimatePresence>
-              {/* Image indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                {galleryImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`h-2 w-2 rounded-full transition-all ${
-                      index === currentImageIndex
-                        ? "bg-white w-6"
-                        : "bg-white/50 hover:bg-white/75"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
+        {/* Hero Content */}
+        <div className="flex flex-1 flex-col justify-center px-4 pt-24 md:px-8 lg:px-16 max-w-7xl">
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="liquid-glass mb-8 flex w-fit items-center gap-3 rounded-full px-4 py-2"
+          >
+            <span className="rounded-full bg-white px-3 py-0.5 text-xs font-semibold text-black">
+              {t.hero.badgeNew}
+            </span>
+            <span className="font-barlow text-sm text-white">
+              {t.hero.badgeText}
+            </span>
+          </motion.div>
 
-            {/* Small Images with scroll animation */}
-            <div className="relative h-40 lg:h-48 overflow-hidden rounded-2xl shadow-lg">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={smallImages[0]}
-                  src={galleryImages[smallImages[0]].src}
-                  alt={galleryImages[smallImages[0]].alt}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </AnimatePresence>
-            </div>
-            <div className="relative h-40 lg:h-48 overflow-hidden rounded-2xl shadow-lg">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={smallImages[1]}
-                  src={galleryImages[smallImages[1]].src}
-                  alt={galleryImages[smallImages[1]].alt}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </AnimatePresence>
-            </div>
-          </div>
+          {/* Headline */}
+          <h1 className="font-mondwest text-6xl leading-[0.8] tracking-[-4px] text-white md:text-7xl lg:text-[5.5rem]">
+            <BlurText text={t.hero.headline1} delay={100} direction="bottom" />
+            <br />
+            <BlurText text={t.hero.headline2} delay={500} direction="bottom" />
+          </h1>
+
+          {/* Subheading */}
+          <motion.p
+            initial={{ filter: "blur(10px)", opacity: 0, y: 20 }}
+            animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="mt-6 max-w-xl font-barlow text-sm font-light text-white md:text-base"
+          >
+            {t.hero.subheading}
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ filter: "blur(10px)", opacity: 0 }}
+            animate={{ filter: "blur(0px)", opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1.1 }}
+            className="mt-6 flex flex-col items-center gap-6 sm:flex-row"
+          >
+            <button className="liquid-glass-strong flex items-center gap-2 rounded-full px-8 py-3 font-barlow text-sm text-white transition-transform hover:scale-[1.03]">
+              {t.hero.ctaPrimary}
+              <ArrowUpRight className="h-4 w-4" />
+            </button>
+            <button className="flex items-center gap-2 font-barlow text-sm text-white transition-opacity hover:opacity-80">
+              <Play className="h-4 w-4" fill="white" />
+              {t.hero.ctaSecondary}
+            </button>
+          </motion.div>
         </div>
+
+        {/* Partners Bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1.4 }}
+          className="flex flex-col items-center gap-4 pb-8"
+        >
+          <span className="liquid-glass rounded-full px-4 py-1.5 font-barlow text-xs text-white">
+            {t.hero.partnersLabel}
+          </span>
+          <div className="flex items-center gap-8 md:gap-12">
+            {partners.map((name) => (
+              <span
+                key={name}
+                className="font-instrument text-2xl italic tracking-tight text-white md:text-3xl"
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

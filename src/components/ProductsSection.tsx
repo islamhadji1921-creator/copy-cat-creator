@@ -3,20 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/contexts/LanguageContext";
-import weightLossLifestyle from "@/assets/weight-loss-lifestyle.jpg";
-import antiAging from "@/assets/anti-aging.jpg";
-import hairGrowth from "@/assets/hair-growth.jpg";
-import strength from "@/assets/strength.jpg";
-import mood from "@/assets/mood.jpg";
-import nadSupplement from "@/assets/nad-supplement.jpg";
+import { Monitor, Cpu, Mouse, Gamepad2, Wifi, HardDrive } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.1 },
   },
 };
 
@@ -25,10 +18,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
 
@@ -36,54 +26,17 @@ const ProductsSection = () => {
   const { t } = useLanguage();
 
   const products = [
-    {
-      title: t.products.weightLossProgram,
-      price: "19,500 دج",
-      period: t.common.perMonth,
-      image: weightLossLifestyle,
-      description: t.products.weightLossDesc,
-    },
-    {
-      title: t.products.antiAgingCleanser,
-      price: "6,400 دج",
-      period: t.common.perMonth,
-      image: antiAging,
-      description: t.products.antiAgingDesc,
-    },
-    {
-      title: t.products.hairGrowthSerum,
-      price: "11,700 دج",
-      period: t.common.perMonth,
-      image: hairGrowth,
-      description: t.products.hairGrowthDesc,
-    },
-    {
-      title: t.products.strengthSupplement,
-      price: "10,400 دج",
-      period: t.common.perMonth,
-      image: strength,
-      description: t.products.strengthDesc,
-    },
-    {
-      title: t.products.moodEnhancer,
-      price: "7,800 دج",
-      period: t.common.perMonth,
-      image: mood,
-      description: t.products.moodDesc,
-    },
-    {
-      title: t.products.nadSupplement,
-      price: "16,900 دج",
-      period: t.common.perMonth,
-      image: nadSupplement,
-      description: t.products.nadDesc,
-    },
+    { title: t.products.pcConfigs, description: t.products.pcConfigsDesc, icon: Cpu, price: "45,000 دج" },
+    { title: t.products.monitors, description: t.products.monitorsDesc, icon: Monitor, price: "25,000 دج" },
+    { title: t.products.accessories, description: t.products.accessoriesDesc, icon: Mouse, price: "3,500 دج" },
+    { title: t.products.gaming, description: t.products.gamingDesc, icon: Gamepad2, price: "85,000 دج" },
+    { title: t.products.networking, description: t.products.networkingDesc, icon: Wifi, price: "8,000 دج" },
+    { title: t.products.storage, description: t.products.storageDesc, icon: HardDrive, price: "12,000 دج" },
   ];
 
   return (
     <section className="py-16 lg:py-24">
       <div className="container">
-        {/* Section Header */}
         <ScrollReveal className="mb-12 text-center">
           <span className="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-primary">
             {t.products.sectionLabel}
@@ -95,7 +48,6 @@ const ProductsSection = () => {
           </h2>
         </ScrollReveal>
 
-        {/* Products Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -106,29 +58,14 @@ const ProductsSection = () => {
           {products.map((product, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Card className="group overflow-hidden border-border bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <CardContent className="p-5">
-                  <h3 className="mb-1 text-lg font-semibold text-foreground">
-                    {product.title}
-                  </h3>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    {product.description}
-                  </p>
+                <CardContent className="p-6">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                    <product.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="mb-1 text-lg font-semibold text-foreground">{product.title}</h3>
+                  <p className="mb-3 text-sm text-muted-foreground">{product.description}</p>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-2xl font-bold text-foreground">
-                        {product.price}
-                      </span>
-                      <span className="text-sm text-muted-foreground">
-                        {product.period}
-                      </span>
-                    </div>
+                    <span className="text-xl font-bold text-foreground">{product.price}</span>
                     <Button
                       size="sm"
                       className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-transform hover:scale-105"

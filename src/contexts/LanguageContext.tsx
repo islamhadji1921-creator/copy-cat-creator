@@ -3,54 +3,51 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 type Language = "ar" | "fr";
 
 interface Translations {
-  // Header
   nav: {
-    weightLoss: string;
-    strength: string;
-    antiAging: string;
-    hairGrowth: string;
-    mood: string;
+    products: string;
+    configs: string;
+    monitors: string;
+    accessories: string;
+    delivery: string;
     more: string;
-    nad: string;
-    womensHealth: string;
-    mensHealth: string;
+    contact: string;
+    support: string;
+    order: string;
     login: string;
     getStarted: string;
   };
-  // Hero
   hero: {
-    rating: string;
-    reviews: string;
-    headline: string;
-    headlineHighlight: string;
-    benefit1: string;
-    benefit2: string;
-    benefit3: string;
-    price: string;
-    perMonth: string;
-    eligibilityTitle: string;
-    eligibilityDesc: string;
-    findOut: string;
+    navHome: string;
+    navProducts: string;
+    navAbout: string;
+    navContact: string;
+    cta: string;
+    badgeNew: string;
+    badgeText: string;
+    headline1: string;
+    headline2: string;
+    subheading: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    partnersLabel: string;
   };
-  // Products
   products: {
     sectionLabel: string;
     sectionTitle: string;
     sectionSubtitle: string;
-    weightLossProgram: string;
-    weightLossDesc: string;
-    antiAgingCleanser: string;
-    antiAgingDesc: string;
-    hairGrowthSerum: string;
-    hairGrowthDesc: string;
-    strengthSupplement: string;
-    strengthDesc: string;
-    moodEnhancer: string;
-    moodDesc: string;
-    nadSupplement: string;
-    nadDesc: string;
+    pcConfigs: string;
+    pcConfigsDesc: string;
+    monitors: string;
+    monitorsDesc: string;
+    accessories: string;
+    accessoriesDesc: string;
+    gaming: string;
+    gamingDesc: string;
+    networking: string;
+    networkingDesc: string;
+    storage: string;
+    storageDesc: string;
   };
-  // Personalized Plan
   personalizedPlan: {
     headline: string;
     feature1: string;
@@ -61,7 +58,6 @@ interface Translations {
     checkEligibility: string;
     disclaimer: string;
   };
-  // Promo Cards
   promo: {
     card1Title: string;
     card1Subtitle: string;
@@ -73,7 +69,6 @@ interface Translations {
     learnMore: string;
     firstMonth: string;
   };
-  // Science Nature
   science: {
     headline1: string;
     science: string;
@@ -88,7 +83,6 @@ interface Translations {
     sulphateFree: string;
     glutenFree: string;
   };
-  // FAQ
   faq: {
     title: string;
     subtitle: string;
@@ -103,7 +97,6 @@ interface Translations {
     q5: string;
     a5: string;
   };
-  // Resources
   resources: {
     title: string;
     subtitle: string;
@@ -116,7 +109,6 @@ interface Translations {
     womensHormones: string;
     womensHormonesDesc: string;
   };
-  // Footer
   footer: {
     ctaTitle: string;
     ctaDesc: string;
@@ -138,7 +130,6 @@ interface Translations {
     copyright: string;
     tagline: string;
   };
-  // Common
   common: {
     perMonth: string;
   };
@@ -147,130 +138,131 @@ interface Translations {
 const translations: Record<Language, Translations> = {
   ar: {
     nav: {
-      weightLoss: "إنقاص الوزن",
-      strength: "القوة",
-      antiAging: "مكافحة الشيخوخة",
-      hairGrowth: "نمو الشعر",
-      mood: "المزاج",
+      products: "المنتجات",
+      configs: "تجميعات",
+      monitors: "شاشات",
+      accessories: "إكسسوارات",
+      delivery: "التوصيل",
       more: "المزيد",
-      nad: "NAD+",
-      womensHealth: "صحة المرأة",
-      mensHealth: "صحة الرجل",
+      contact: "اتصل بنا",
+      support: "الدعم",
+      order: "اطلب الآن",
       login: "تسجيل الدخول",
-      getStarted: "ابدأ الآن",
+      getStarted: "اطلب الآن",
     },
     hero: {
-      rating: "4.5",
-      reviews: "(453 تقييم)",
-      headline: "سيماجلوتايد المركب لـ",
-      headlineHighlight: "إنقاص الوزن",
-      benefit1: "نفس المكون الفعال في Wegovy® و Ozempic®",
-      benefit2: "بدون رسوم مخفية",
-      benefit3: "توصيل مجاني",
-      price: "39,000 دج",
-      perMonth: "/شهر",
-      eligibilityTitle: "هل هذا مناسب لك؟",
-      eligibilityDesc: "قم بتقييم سريع لمعرفة ذلك",
-      findOut: "اكتشف",
+      navHome: "الرئيسية",
+      navProducts: "المنتجات",
+      navAbout: "من نحن",
+      navContact: "اتصل بنا",
+      cta: "اطلب الآن",
+      badgeNew: "جديد",
+      badgeText: "تجميعات حواسيب احترافية 2026 متوفرة الآن",
+      headline1: "أقوى تجميعات",
+      headline2: "الحواسيب في سطيف",
+      subheading: "Itech Pro العلمة - سطيف، شارع فلسطين 🏠 تجميعات حواسيب احترافية، شاشات وإكسسوارات الكمبيوتر بأفضل الأسعار. توصيل لـ 58 ولاية 🚚",
+      ctaPrimary: "ابدأ طلبك",
+      ctaSecondary: "شاهد المنتجات",
+      partnersLabel: "نعمل مع أفضل العلامات التجارية العالمية",
     },
     products: {
       sectionLabel: "منتجاتنا",
-      sectionTitle: "أدوية بأسعار معقولة",
-      sectionSubtitle: "بدون تأمين",
-      weightLossProgram: "برنامج إنقاص الوزن",
-      weightLossDesc: "إدارة وزن مثبتة علمياً",
-      antiAgingCleanser: "منظف مكافحة الشيخوخة",
-      antiAgingDesc: "جدد بشرتك بشكل طبيعي",
-      hairGrowthSerum: "سيروم نمو الشعر",
-      hairGrowthDesc: "عزز نمو الشعر الصحي",
-      strengthSupplement: "مكمل القوة",
-      strengthDesc: "ابنِ كتلة عضلية خالية من الدهون",
-      moodEnhancer: "محسن المزاج",
-      moodDesc: "ادعم صحتك النفسية",
-      nadSupplement: "مكمل NAD+",
-      nadDesc: "طاقة خلوية وطول العمر",
+      sectionTitle: "أجهزة كمبيوتر بأسعار",
+      sectionSubtitle: "تنافسية",
+      pcConfigs: "تجميعات حواسيب 💻",
+      pcConfigsDesc: "تجميعات مخصصة حسب احتياجاتك",
+      monitors: "شاشات",
+      monitorsDesc: "شاشات عالية الجودة لجميع الاستخدامات",
+      accessories: "إكسسوارات الكمبيوتر",
+      accessoriesDesc: "كل ما تحتاجه من ملحقات",
+      gaming: "أجهزة الألعاب",
+      gamingDesc: "تجهيزات gaming احترافية",
+      networking: "شبكات",
+      networkingDesc: "حلول الشبكات والاتصال",
+      storage: "تخزين",
+      storageDesc: "حلول تخزين سريعة وموثوقة",
     },
     personalizedPlan: {
-      headline: "أنقص وزنك مع خطة مصممة خصيصاً لك",
-      feature1: "جرعات دوائية مخصصة",
-      feature2: "استشارات فردية مع مقدم الرعاية",
-      feature3: "مراقبة صحية مستمرة",
-      feature4: "خطط اشتراك مرنة",
-      feature5: "دعم طبي على مدار الساعة",
-      checkEligibility: "تحقق من أهليتك",
-      disclaimer: "*قد تختلف النتائج. استشر مقدم الرعاية الصحية لتحديد ما إذا كان هذا العلاج مناسباً لك.",
+      headline: "احصل على جهاز مصمم خصيصاً لك",
+      feature1: "اختيار القطع حسب ميزانيتك",
+      feature2: "استشارة مجانية مع خبرائنا",
+      feature3: "ضمان على جميع المنتجات",
+      feature4: "خدمة ما بعد البيع",
+      feature5: "دعم تقني على مدار الساعة",
+      checkEligibility: "استشرنا مجاناً",
+      disclaimer: "*الأسعار قابلة للتغيير حسب توفر القطع والسوق.",
     },
     promo: {
-      card1Title: "تقدم في العمر بثقة",
-      card1Subtitle: "علاجات مكافحة الشيخوخة",
-      card1PriceNote: "الشهر الأول",
-      card2Title: "جدد بشرتك",
-      card2Subtitle: "عناية فاخرة بالبشرة",
-      card3Title: "عزز طاقتك الخلوية",
-      card3Subtitle: "علاج NAD+",
+      card1Title: "تجميعة Gaming",
+      card1Subtitle: "أداء خارق للألعاب",
+      card1PriceNote: "ابتداءً من",
+      card2Title: "تجميعة مكتبية",
+      card2Subtitle: "للعمل والدراسة",
+      card3Title: "ترقية جهازك",
+      card3Subtitle: "أعد الحياة لجهازك",
       learnMore: "اعرف المزيد",
-      firstMonth: "الشهر الأول",
+      firstMonth: "ابتداءً من",
     },
     science: {
       headline1: "اكتشف انسجام",
-      science: "العلم",
+      science: "الجودة",
       and: "و",
-      nature: "الطبيعة",
-      description: "تجمع تركيباتنا بين أحدث العلوم الصيدلانية والمكونات الطبيعية، مما يضمن علاجات فعالة تعمل مع جسمك وليس ضده.",
+      nature: "الأداء",
+      description: "نختار أفضل القطع من أقوى العلامات التجارية العالمية لنقدم لك تجميعات بأعلى أداء وأفضل سعر.",
       exploreProducts: "استكشف المنتجات",
-      crueltyFree: "خالي من القسوة",
-      ecoFriendly: "صديق للبيئة",
-      parabenFree: "خالي من البارابين",
-      siliconeFree: "خالي من السيليكون",
-      sulphateFree: "خالي من الكبريتات",
-      glutenFree: "خالي من الجلوتين",
+      crueltyFree: "ضمان أصلي",
+      ecoFriendly: "توصيل آمن",
+      parabenFree: "قطع أصلية",
+      siliconeFree: "أسعار تنافسية",
+      sulphateFree: "دعم تقني",
+      glutenFree: "خدمة ممتازة",
     },
     faq: {
       title: "الأسئلة الشائعة",
-      subtitle: "كل ما تحتاج معرفته عن برامجنا",
-      q1: "ما هي الولايات التي تخدمون فيها برامج GLP-1؟",
-      a1: "نخدم حالياً المرضى في 48 ولاية. قد تنطبق قيود في بعض الولايات بسبب اللوائح المحلية. تواصل مع فريق الدعم لتأكيد التوفر في منطقتك.",
-      q2: "هل تقبلون التأمين؟",
-      a2: "نعمل حالياً بنظام الدفع النقدي للحفاظ على أسعارنا شفافة ومعقولة. ومع ذلك، قد تتمكن من استخدام أموال HSA أو FSA لعلاجاتك.",
-      q3: "ما الأدوية التي يصفها أطباؤكم؟",
-      a3: "يصف مقدمو الرعاية الصحية المرخصون لدينا أدوية معتمدة من FDA وإصدارات مركبة عند الاقتضاء. يشمل ذلك Semaglutide و Tirzepatide وعلاجات أخرى قائمة على الأدلة.",
-      q4: 'ما هي ضمان "نفس السعر لكل جرعة"؟',
-      a4: "على عكس البرامج الأخرى التي تزيد الأسعار مع زيادة الجرعة، نحافظ على تكلفتك الشهرية ثابتة بغض النظر عن الجرعة الموصوفة.",
-      q5: "هل تشمل خططكم الوصفات والأدوية؟",
-      a5: "نعم! يشمل اشتراكك الشهري استشارتك مع مقدم مرخص، والوصفة نفسها، وجميع الأدوية المشحونة مباشرة إلى بابك. لا توجد رسوم مخفية.",
+      subtitle: "كل ما تحتاج معرفته عن خدماتنا",
+      q1: "هل تقومون بالتوصيل لجميع الولايات؟",
+      a1: "نعم، نوفر التوصيل لـ 58 ولاية عبر خدمات الشحن الموثوقة. 🚚",
+      q2: "كيف يمكنني طلب تجميعة مخصصة؟",
+      a2: "تواصل معنا عبر الهاتف أو البريد الإلكتروني وسنساعدك في اختيار القطع المناسبة لاحتياجاتك وميزانيتك.",
+      q3: "هل تقدمون ضمان على المنتجات؟",
+      a3: "نعم، جميع منتجاتنا تأتي مع ضمان المصنع الأصلي.",
+      q4: "ما هي طرق الدفع المتاحة؟",
+      a4: "نقبل الدفع نقداً عند الاستلام، التحويل البنكي، و CCP.",
+      q5: "أين يقع محلكم؟",
+      a5: "نحن في العلمة - سطيف، شارع فلسطين 🏠. مرحباً بكم في أي وقت!",
     },
     resources: {
-      title: "دليلك للصحة والعافية",
-      subtitle: "يبدأ من هنا",
-      weightLoss: "إنقاص الوزن",
-      weightLossDesc: "اكتشف استراتيجيات مدعومة علمياً لإدارة وزن مستدامة وصحة التمثيل الغذائي.",
-      healthyAging: "الشيخوخة الصحية",
-      healthyAgingDesc: "تعرف على العلاجات التي يمكن أن تساعدك على التقدم في العمر بأناقة والحفاظ على حيويتك.",
-      hairGrowth: "نمو الشعر",
-      hairGrowthDesc: "استكشف حلولاً فعالة لاستعادة الشعر والحفاظ على شعر صحي.",
-      womensHormones: "هرمونات المرأة",
-      womensHormonesDesc: "فهم الصحة الهرمونية والعلاجات المصممة خصيصاً لاحتياجات المرأة الفريدة.",
+      title: "تواصل معنا",
+      subtitle: "نحن هنا لمساعدتك",
+      weightLoss: "📞 الهاتف",
+      weightLossDesc: "0772 06 13 98",
+      healthyAging: "📞 الهاتف 2",
+      healthyAgingDesc: "+213 551 13 87 81",
+      hairGrowth: "📧 البريد الإلكتروني",
+      hairGrowthDesc: "xdp51919@gmail.com",
+      womensHormones: "📍 العنوان",
+      womensHormonesDesc: "شارع فلسطين، العلمة - سطيف",
     },
     footer: {
-      ctaTitle: "هل أنت مستعد لبدء رحلتك الصحية؟",
-      ctaDesc: "انضم إلى آلاف الأشخاص الذين غيروا صحتهم مع خططنا العلاجية المخصصة.",
-      ctaButton: "ابدأ اليوم",
+      ctaTitle: "هل أنت مستعد لتجميع حاسوبك؟",
+      ctaDesc: "تواصل معنا اليوم واحصل على أفضل تجميعة بأفضل سعر.",
+      ctaButton: "اطلب الآن",
       productsTitle: "المنتجات",
       companyTitle: "الشركة",
       supportTitle: "الدعم",
       legalTitle: "قانوني",
       aboutUs: "من نحن",
-      careers: "وظائف",
-      press: "الصحافة",
+      careers: "فريقنا",
+      press: "أخبارنا",
       blog: "المدونة",
       helpCenter: "مركز المساعدة",
       contactUs: "اتصل بنا",
-      shipping: "الشحن",
+      shipping: "التوصيل",
       privacyPolicy: "سياسة الخصوصية",
       termsOfService: "شروط الخدمة",
-      disclaimer: "هذه البيانات لم يتم تقييمها من قبل الهيئات الصحية. هذا المنتج ليس مخصصاً لتشخيص أو علاج أو شفاء أو منع أي مرض.",
-      copyright: "© 2024 رونق الحياة. جميع الحقوق محفوظة.",
-      tagline: "حلول رعاية صحية مخصصة توصل إلى بابك.",
+      disclaimer: "جميع الأسعار قابلة للتغيير حسب توفر المنتجات وظروف السوق.",
+      copyright: "© 2024 Itech Pro. جميع الحقوق محفوظة.",
+      tagline: "تجميعات حواسيب احترافية - العلمة، سطيف",
     },
     common: {
       perMonth: "/شهر",
@@ -278,130 +270,131 @@ const translations: Record<Language, Translations> = {
   },
   fr: {
     nav: {
-      weightLoss: "Perte de Poids",
-      strength: "Force",
-      antiAging: "Anti-Âge",
-      hairGrowth: "Croissance Capillaire",
-      mood: "Humeur",
+      products: "Produits",
+      configs: "Configs",
+      monitors: "Écrans",
+      accessories: "Accessoires",
+      delivery: "Livraison",
       more: "Plus",
-      nad: "NAD+",
-      womensHealth: "Santé Féminine",
-      mensHealth: "Santé Masculine",
+      contact: "Contact",
+      support: "Support",
+      order: "Commander",
       login: "Connexion",
-      getStarted: "Commencer",
+      getStarted: "Commander",
     },
     hero: {
-      rating: "4.5",
-      reviews: "(453 avis)",
-      headline: "Sémaglutide Composé pour la",
-      headlineHighlight: "Perte de Poids",
-      benefit1: "Même ingrédient que Wegovy® et Ozempic®",
-      benefit2: "Sans frais cachés",
-      benefit3: "Livraison gratuite",
-      price: "39 000 DA",
-      perMonth: "/mois",
-      eligibilityTitle: "Est-ce fait pour vous ?",
-      eligibilityDesc: "Faites une évaluation rapide pour le savoir",
-      findOut: "Découvrir",
+      navHome: "Accueil",
+      navProducts: "Produits",
+      navAbout: "À Propos",
+      navContact: "Contact",
+      cta: "Commander",
+      badgeNew: "Nouveau",
+      badgeText: "Configs PC professionnelles 2026 disponibles",
+      headline1: "Les Meilleures Configs",
+      headline2: "PC à Sétif",
+      subheading: "Itech Pro El Eulma - Sétif, Rue Palestine 🏠 Configs PC professionnelles, écrans et accessoires aux meilleurs prix. Livraison 58 wilayas 🚚",
+      ctaPrimary: "Passer Commande",
+      ctaSecondary: "Voir les Produits",
+      partnersLabel: "Nous travaillons avec les meilleures marques mondiales",
     },
     products: {
-      sectionLabel: "Nos Médicaments",
-      sectionTitle: "Médicaments Abordables",
-      sectionSubtitle: "Sans Assurance",
-      weightLossProgram: "Programme Perte de Poids",
-      weightLossDesc: "Gestion du poids cliniquement prouvée",
-      antiAgingCleanser: "Nettoyant Anti-Âge",
-      antiAgingDesc: "Rajeunissez votre peau naturellement",
-      hairGrowthSerum: "Sérum Croissance Capillaire",
-      hairGrowthDesc: "Favorisez une croissance saine des cheveux",
-      strengthSupplement: "Supplément de Force",
-      strengthDesc: "Développez une masse musculaire maigre",
-      moodEnhancer: "Améliorateur d'Humeur",
-      moodDesc: "Soutenez votre bien-être mental",
-      nadSupplement: "Supplément NAD+",
-      nadDesc: "Énergie cellulaire et longévité",
+      sectionLabel: "Nos Produits",
+      sectionTitle: "PC aux Prix",
+      sectionSubtitle: "Compétitifs",
+      pcConfigs: "Configs PC 💻",
+      pcConfigsDesc: "Assemblages personnalisés selon vos besoins",
+      monitors: "Écrans",
+      monitorsDesc: "Écrans haute qualité pour tous usages",
+      accessories: "Accessoires PC",
+      accessoriesDesc: "Tout ce dont vous avez besoin",
+      gaming: "Gaming",
+      gamingDesc: "Équipements gaming professionnels",
+      networking: "Réseaux",
+      networkingDesc: "Solutions réseau et connectivité",
+      storage: "Stockage",
+      storageDesc: "Solutions de stockage rapides et fiables",
     },
     personalizedPlan: {
-      headline: "Perdez du poids avec un plan fait pour vous",
-      feature1: "Dosage médicamenteux personnalisé",
-      feature2: "Consultations individuelles avec le médecin",
-      feature3: "Suivi de santé continu",
-      feature4: "Plans d'abonnement flexibles",
-      feature5: "Support clinique 24h/24",
-      checkEligibility: "Vérifiez votre éligibilité",
-      disclaimer: "*Les résultats peuvent varier. Consultez un professionnel de santé pour déterminer si ce traitement vous convient.",
+      headline: "Obtenez un PC conçu spécialement pour vous",
+      feature1: "Choix des composants selon votre budget",
+      feature2: "Consultation gratuite avec nos experts",
+      feature3: "Garantie sur tous les produits",
+      feature4: "Service après-vente",
+      feature5: "Support technique 24h/24",
+      checkEligibility: "Consultez-nous gratuitement",
+      disclaimer: "*Les prix sont sujets à changement selon la disponibilité et le marché.",
     },
     promo: {
-      card1Title: "Vieillissez avec confiance",
-      card1Subtitle: "Traitements anti-âge",
-      card1PriceNote: "premier mois",
-      card2Title: "Rajeunissez votre peau",
-      card2Subtitle: "Soins premium",
-      card3Title: "Boostez l'énergie cellulaire",
-      card3Subtitle: "Thérapie NAD+",
+      card1Title: "Config Gaming",
+      card1Subtitle: "Performance ultime",
+      card1PriceNote: "à partir de",
+      card2Title: "Config Bureau",
+      card2Subtitle: "Travail et études",
+      card3Title: "Upgrade PC",
+      card3Subtitle: "Redonnez vie à votre PC",
       learnMore: "En savoir plus",
-      firstMonth: "premier mois",
+      firstMonth: "à partir de",
     },
     science: {
       headline1: "Découvrez l'harmonie entre",
-      science: "science",
+      science: "qualité",
       and: "et",
-      nature: "nature",
-      description: "Nos formulations combinent la science pharmaceutique de pointe avec des ingrédients naturels, garantissant des traitements efficaces qui travaillent avec votre corps, pas contre lui.",
+      nature: "performance",
+      description: "Nous sélectionnons les meilleurs composants des plus grandes marques mondiales pour vous offrir des configs haute performance au meilleur prix.",
       exploreProducts: "Explorer les Produits",
-      crueltyFree: "Sans Cruauté",
-      ecoFriendly: "Écologique",
-      parabenFree: "Sans Parabène",
-      siliconeFree: "Sans Silicone",
-      sulphateFree: "Sans Sulfate",
-      glutenFree: "Sans Gluten",
+      crueltyFree: "Garantie originale",
+      ecoFriendly: "Livraison sécurisée",
+      parabenFree: "Pièces originales",
+      siliconeFree: "Prix compétitifs",
+      sulphateFree: "Support technique",
+      glutenFree: "Service excellent",
     },
     faq: {
       title: "Questions Fréquentes",
-      subtitle: "Tout ce que vous devez savoir sur nos programmes",
-      q1: "Dans quels états proposez-vous les programmes GLP-1 ?",
-      a1: "Nous servons actuellement des patients dans 48 états. Des restrictions peuvent s'appliquer dans certains états en raison de réglementations locales. Contactez notre équipe support pour confirmer la disponibilité dans votre région.",
-      q2: "Acceptez-vous l'assurance ?",
-      a2: "Nous fonctionnons actuellement sur un modèle de paiement direct pour maintenir nos prix transparents et abordables. Cependant, vous pouvez utiliser vos fonds HSA ou FSA pour vos traitements.",
-      q3: "Quels médicaments vos médecins prescrivent-ils ?",
-      a3: "Nos professionnels de santé agréés prescrivent des médicaments approuvés par la FDA et des versions composées le cas échéant. Cela inclut le Sémaglutide, le Tirzépatide et d'autres traitements fondés sur des preuves.",
-      q4: 'Quelle est notre garantie "Même Prix à Chaque Dose" ?',
-      a4: "Contrairement à d'autres programmes qui augmentent les prix avec l'augmentation de la dose, nous maintenons votre coût mensuel identique quelle que soit la dose prescrite.",
-      q5: "Vos plans incluent-ils les prescriptions et médicaments ?",
-      a5: "Oui ! Votre abonnement mensuel comprend votre consultation avec un médecin agréé, la prescription elle-même, et tous les médicaments livrés directement chez vous. Pas de frais cachés.",
+      subtitle: "Tout ce que vous devez savoir sur nos services",
+      q1: "Livrez-vous dans toutes les wilayas ?",
+      a1: "Oui, nous assurons la livraison dans les 58 wilayas via des services de transport fiables. 🚚",
+      q2: "Comment commander une config personnalisée ?",
+      a2: "Contactez-nous par téléphone ou email et nous vous aiderons à choisir les composants adaptés à vos besoins et budget.",
+      q3: "Offrez-vous une garantie sur les produits ?",
+      a3: "Oui, tous nos produits sont accompagnés de la garantie constructeur originale.",
+      q4: "Quels modes de paiement acceptez-vous ?",
+      a4: "Nous acceptons le paiement à la livraison, le virement bancaire et CCP.",
+      q5: "Où se trouve votre magasin ?",
+      a5: "Nous sommes à El Eulma - Sétif, Rue Palestine 🏠. Bienvenue à tout moment !",
     },
     resources: {
-      title: "Votre guide vers la santé et le bien-être",
-      subtitle: "commence ici",
-      weightLoss: "Perte de Poids",
-      weightLossDesc: "Découvrez des stratégies scientifiquement prouvées pour une gestion durable du poids et une santé métabolique optimale.",
-      healthyAging: "Vieillissement Sain",
-      healthyAgingDesc: "Découvrez les traitements qui peuvent vous aider à vieillir gracieusement et à maintenir votre vitalité.",
-      hairGrowth: "Croissance Capillaire",
-      hairGrowthDesc: "Explorez des solutions efficaces pour la restauration capillaire et le maintien de cheveux sains.",
-      womensHormones: "Hormones Féminines",
-      womensHormonesDesc: "Comprendre la santé hormonale et les traitements adaptés aux besoins uniques des femmes.",
+      title: "Contactez-nous",
+      subtitle: "Nous sommes là pour vous aider",
+      weightLoss: "📞 Téléphone",
+      weightLossDesc: "0772 06 13 98",
+      healthyAging: "📞 Téléphone 2",
+      healthyAgingDesc: "+213 551 13 87 81",
+      hairGrowth: "📧 Email",
+      hairGrowthDesc: "xdp51919@gmail.com",
+      womensHormones: "📍 Adresse",
+      womensHormonesDesc: "Rue Palestine, El Eulma - Sétif",
     },
     footer: {
-      ctaTitle: "Prêt à commencer votre parcours bien-être ?",
-      ctaDesc: "Rejoignez des milliers de personnes qui ont transformé leur santé avec nos plans de traitement personnalisés.",
-      ctaButton: "Commencez Aujourd'hui",
+      ctaTitle: "Prêt à assembler votre PC ?",
+      ctaDesc: "Contactez-nous aujourd'hui et obtenez la meilleure config au meilleur prix.",
+      ctaButton: "Commander Maintenant",
       productsTitle: "Produits",
       companyTitle: "Entreprise",
       supportTitle: "Support",
       legalTitle: "Légal",
       aboutUs: "À Propos",
-      careers: "Carrières",
-      press: "Presse",
+      careers: "Notre Équipe",
+      press: "Actualités",
       blog: "Blog",
       helpCenter: "Centre d'Aide",
       contactUs: "Contactez-nous",
       shipping: "Livraison",
       privacyPolicy: "Politique de Confidentialité",
       termsOfService: "Conditions d'Utilisation",
-      disclaimer: "Ces déclarations n'ont pas été évaluées par les autorités sanitaires. Ce produit n'est pas destiné à diagnostiquer, traiter, guérir ou prévenir une maladie.",
-      copyright: "© 2024 Ronaq El Hayat. Tous droits réservés.",
-      tagline: "Solutions de santé personnalisées livrées à votre porte.",
+      disclaimer: "Tous les prix sont sujets à changement selon la disponibilité des produits et les conditions du marché.",
+      copyright: "© 2024 Itech Pro. Tous droits réservés.",
+      tagline: "Configs PC professionnelles - El Eulma, Sétif",
     },
     common: {
       perMonth: "/mois",

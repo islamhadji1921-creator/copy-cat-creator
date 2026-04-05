@@ -2,14 +2,6 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageToggle from "@/components/LanguageToggle";
 
@@ -19,24 +11,15 @@ const Header = () => {
   const { t, isRTL } = useLanguage();
 
   const navLinks = [
-    { label: t.nav.weightLoss, href: "#" },
-    { label: t.nav.strength, href: "#" },
-    { label: t.nav.antiAging, href: "#" },
-    { label: t.nav.hairGrowth, href: "#" },
-    { label: t.nav.mood, href: "#" },
-  ];
-
-  const moreLinks = [
-    { label: t.nav.nad, href: "#" },
-    { label: t.nav.womensHealth, href: "#" },
-    { label: t.nav.mensHealth, href: "#" },
+    { label: t.nav.products, href: "#" },
+    { label: t.nav.configs, href: "#" },
+    { label: t.nav.monitors, href: "#" },
+    { label: t.nav.accessories, href: "#" },
+    { label: t.nav.delivery, href: "#" },
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -58,7 +41,6 @@ const Header = () => {
       }`}
     >
       <div className="container flex h-full items-center justify-between">
-        {/* Logo */}
         <motion.a
           href="#"
           className="flex items-center gap-2"
@@ -66,12 +48,11 @@ const Header = () => {
           transition={{ duration: 0.3 }}
         >
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary">
-            <span className="text-lg font-bold text-primary-foreground">R</span>
+            <span className="text-lg font-bold text-primary-foreground">i</span>
           </div>
-          <span className="text-xl font-bold text-foreground">رونق الحياة</span>
+          <span className="text-xl font-bold text-foreground">Itech Pro</span>
         </motion.a>
 
-        {/* Desktop Navigation */}
         <nav className="hidden lg:flex lg:items-center lg:gap-1">
           {navLinks.map((link) => (
             <a
@@ -82,38 +63,12 @@ const Header = () => {
               {link.label}
             </a>
           ))}
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-sm font-medium text-muted-foreground hover:text-foreground">
-                  {t.nav.more}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-48 gap-1 p-2">
-                    {moreLinks.map((link) => (
-                      <li key={link.label}>
-                        <NavigationMenuLink asChild>
-                          <a
-                            href={link.href}
-                            className="block rounded-md px-3 py-2 text-sm hover:bg-accent"
-                          >
-                            {link.label}
-                          </a>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
         </nav>
 
-        {/* Desktop CTA Buttons */}
         <div className="hidden items-center gap-3 lg:flex">
           <LanguageToggle />
           <Button variant="ghost" className="text-sm font-medium">
-            {t.nav.login}
+            {t.nav.contact}
           </Button>
           <motion.div
             animate={{ scale: scrolled ? 0.95 : 1 }}
@@ -125,23 +80,14 @@ const Header = () => {
           </motion.div>
         </div>
 
-        {/* Mobile Menu Button */}
         <div className="flex items-center gap-3 lg:hidden">
           <LanguageToggle />
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -160,12 +106,8 @@ const Header = () => {
               </a>
             ))}
             <div className="mt-2 flex flex-col gap-2 px-4">
-              <Button variant="outline" className="w-full">
-                {t.nav.login}
-              </Button>
-              <Button className="w-full rounded-full bg-primary text-primary-foreground">
-                {t.nav.getStarted}
-              </Button>
+              <Button variant="outline" className="w-full">{t.nav.contact}</Button>
+              <Button className="w-full rounded-full bg-primary text-primary-foreground">{t.nav.getStarted}</Button>
             </div>
           </nav>
         </motion.div>
