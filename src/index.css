@@ -15,7 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 20% 10%;
 
-    --primary: 168 76% 36%;
+    --primary: 0 84% 50%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 45 93% 58%;
@@ -32,13 +32,13 @@
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 168 76% 36%;
+    --ring: 0 84% 50%;
 
     --radius: 0.75rem;
 
     /* Custom wellness colors */
-    --wellness-teal: 168 76% 36%;
-    --wellness-teal-light: 168 60% 94%;
+    --wellness-teal: 0 84% 50%;
+    --wellness-teal-light: 0 60% 96%;
     --wellness-gold: 45 93% 58%;
     --wellness-gold-dark: 40 80% 45%;
     --wellness-gray: 220 10% 50%;
@@ -52,7 +52,7 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 168 76% 36%;
+    --sidebar-ring: 0 84% 50%;
   }
 
   .dark {
@@ -65,7 +65,7 @@
     --popover: 220 20% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 168 76% 42%;
+    --primary: 0 84% 55%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 45 93% 58%;
@@ -82,16 +82,16 @@
 
     --border: 220 20% 18%;
     --input: 220 20% 18%;
-    --ring: 168 76% 42%;
+    --ring: 0 84% 55%;
 
     --sidebar-background: 220 20% 10%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 168 76% 42%;
+    --sidebar-primary: 0 84% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 20% 18%;
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 220 20% 18%;
-    --sidebar-ring: 168 76% 42%;
+    --sidebar-ring: 0 84% 55%;
   }
 }
 

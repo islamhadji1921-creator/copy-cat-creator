@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import gymFitness from "@/assets/gym-fitness.jpg";
+import pcAssembly from "@/assets/pc-assembly.jpg";
 
 const PersonalizedPlanSection = () => {
   const { t, isRTL } = useLanguage();
@@ -20,8 +20,8 @@ const PersonalizedPlanSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <motion.img
-          src={gymFitness}
-          alt="Fitness background"
+          src={pcAssembly}
+          alt="PC assembly workshop"
           initial={{ scale: 1.1 }}
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}

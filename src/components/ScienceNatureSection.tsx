@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Leaf, FlaskConical, Sparkles, Ban, Droplets, Wheat } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/contexts/LanguageContext";
-import scienceNature from "@/assets/science-nature.jpg";
+import pcShop from "@/assets/pc-shop.jpg";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -46,8 +46,8 @@ const ScienceNatureSection = () => {
           {/* Image */}
           <ScrollReveal direction={isRTL ? "right" : "left"} className="order-2 lg:order-1">
             <motion.img
-              src={scienceNature}
-              alt="Science and nature harmony"
+              src={pcShop}
+              alt="PC shop interior"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4 }}
               className="rounded-2xl shadow-lg"
