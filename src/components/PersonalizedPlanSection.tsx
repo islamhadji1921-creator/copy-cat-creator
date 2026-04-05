@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import gymFitness from "@/assets/gym-fitness.jpg";
+import pcAssembly from "@/assets/pc-assembly.jpg";
 
 const PersonalizedPlanSection = () => {
   const { t, isRTL } = useLanguage();
